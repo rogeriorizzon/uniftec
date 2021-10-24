@@ -1,0 +1,586 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_ESCOLA",
+      "label": "escola",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "postgres",
+      "pluginName": "PostgreSQL"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.1.2"
+    },
+    {
+      "type": "datasource",
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1635028900672,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  count(id_aluno)\r\nFROM\r\n  relacional.tb_cubo_matriculas\r\nWHERE Sexo in ($filter_sexo)\r\nand Deficiencia in ($filter_deficiencia)\r\nand Transporte in ($filter_transporte)\r\nand Situacao_Anterior in ($filter_situacao)\r\nand Status_Matricula in ($filter_status)\r\nand Turma in ($filter_turma);",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Total Alunos",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  count(*)\r\nFROM\r\n  relacional.tb_cubo_matriculas\r\nWHERE sexo = 'Feminino'\r\nand Deficiencia in ($filter_deficiencia)\r\nand Transporte in ($filter_transporte)\r\nand Situacao_Anterior in ($filter_situacao)\r\nand Status_Matricula in ($filter_status)\r\nand Turma in ($filter_turma);",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Total Sexo Femenino",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  count(*)\r\nFROM\r\n  relacional.tb_cubo_matriculas\r\nWHERE sexo = 'Masculino'\r\nand Deficiencia in ($filter_deficiencia)\r\nand Transporte in ($filter_transporte)\r\nand Situacao_Anterior in ($filter_situacao)\r\nand Status_Matricula in ($filter_status)\r\nand Turma in ($filter_turma);",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Total Sexo Masculino",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 12,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  count(*)\r\nFROM\r\n  relacional.tb_cubo_matriculas\r\nWHERE veio_outra_escola = 'Sim'\r\nand Sexo in ($filter_sexo)\r\nand Deficiencia in ($filter_deficiencia)\r\nand Transporte in ($filter_transporte)\r\nand Situacao_Anterior in ($filter_situacao)\r\nand Status_Matricula in ($filter_status)\r\nand Turma in ($filter_turma);",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Total Veio de Outra Escola",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 17,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.1.2",
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  count(*)\r\nFROM\r\n  relacional.tb_cubo_matriculas\r\nWHERE veio_outra_escola = 'Não'\r\nand Sexo in ($filter_sexo)\r\nand Deficiencia in ($filter_deficiencia)\r\nand Transporte in ($filter_transporte)\r\nand Situacao_Anterior in ($filter_situacao)\r\nand Status_Matricula in ($filter_status)\r\nand Turma in ($filter_turma);",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "title": "Total Não Veio de Outra Escola",
+      "type": "stat"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 30,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ESCOLA}",
+        "definition": "select distinct sexo from relacional.tb_cubo_matriculas",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sexo",
+        "multi": true,
+        "name": "filter_sexo",
+        "options": [],
+        "query": "select distinct sexo from relacional.tb_cubo_matriculas",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ESCOLA}",
+        "definition": "select distinct deficiencia from relacional.tb_cubo_matriculas where Sexo in ($filter_sexo)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Deficiencia",
+        "multi": true,
+        "name": "filter_deficiencia",
+        "options": [],
+        "query": "select distinct deficiencia from relacional.tb_cubo_matriculas where Sexo in ($filter_sexo)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ESCOLA}",
+        "definition": "select distinct transporte from relacional.tb_cubo_matriculas where Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Transporte",
+        "multi": true,
+        "name": "filter_transporte",
+        "options": [],
+        "query": "select distinct transporte from relacional.tb_cubo_matriculas where Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ESCOLA}",
+        "definition": "select distinct situacao_anterior from relacional.tb_cubo_matriculas \nwhere Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia) and Transporte in ($filter_transporte)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Situacao_Anterior",
+        "multi": true,
+        "name": "filter_situacao",
+        "options": [],
+        "query": "select distinct situacao_anterior from relacional.tb_cubo_matriculas \nwhere Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia) and Transporte in ($filter_transporte)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ESCOLA}",
+        "definition": "select distinct status_matricula from relacional.tb_cubo_matriculas \nwhere Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia) and Transporte in ($filter_transporte) and Situacao_Anterior in ($filter_situacao)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Status_Matricula",
+        "multi": true,
+        "name": "filter_status",
+        "options": [],
+        "query": "select distinct status_matricula from relacional.tb_cubo_matriculas \nwhere Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia) and Transporte in ($filter_transporte) and Situacao_Anterior in ($filter_situacao)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_ESCOLA}",
+        "definition": "select distinct turma from relacional.tb_cubo_matriculas \nwhere Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia) and Transporte in ($filter_transporte) and Situacao_Anterior in ($filter_situacao) and Status_Matricula in ($filter_status)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "Turma",
+        "multi": true,
+        "name": "filter_turma",
+        "options": [],
+        "query": "select distinct turma from relacional.tb_cubo_matriculas \nwhere Sexo in ($filter_sexo) and Deficiencia in ($filter_deficiencia) and Transporte in ($filter_transporte) and Situacao_Anterior in ($filter_situacao) and Status_Matricula in ($filter_status)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Dashbord Escolar",
+  "uid": "aEMZOAOnk",
+  "version": 12
+}
